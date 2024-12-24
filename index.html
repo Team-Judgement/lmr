@@ -5,73 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LET ME REST</title>
   <link rel="stylesheet" href="styles.css">
-  <script>
-    // Check URL for #SP and dynamically add Sneeky Peekies section
-    async function loadSneekyPeekies() {
-      if (!location.hash.includes('#SP')) return;
-
-      const contentSection = document.querySelector('.content');
-      const sneekyCard = document.createElement('div');
-      sneekyCard.className = 'card';
-      sneekyCard.innerHTML = `
-        <h2>Sneeky Peekies</h2>
-        <div id="sneeky-list" class="sneeky-list">
-          <p>Loading...</p>
-        </div>
-      `;
-      contentSection.appendChild(sneekyCard);
-
-      try {
-        const response = await fetch('sneeky.json');
-        if (!response.ok) {
-          throw new Error('Failed to fetch sneeky.json');
-        }
-        const data = await response.json();
-        const listContainer = document.getElementById('sneeky-list');
-        listContainer.innerHTML = ''; // Clear any existing content
-
-        data.forEach(item => {
-          const card = document.createElement('div');
-          card.className = 'sneeky-item';
-
-          const img = document.createElement('img');
-          img.src = "images/" + item.image;
-          img.alt = item.name;
-          img.className = 'sneeky-image';
-
-          const title = document.createElement('h3');
-          title.textContent = item.name;
-          title.className = 'sneeky-title';
-
-          const description = document.createElement('p');
-          description.textContent = item.description;
-          description.className = 'sneeky-description';
-
-          card.appendChild(img);
-          card.appendChild(title);
-          card.appendChild(description);
-          listContainer.appendChild(card);
-        });
-      } catch (error) {
-        console.error('Error loading Sneeky Peekies:', error);
-      }
-    }
-
-    // Load the data on page load
-    document.addEventListener('DOMContentLoaded', loadSneekyPeekies);
-  </script>
 </head>
 <body>
   <div class="main-container">
     <header class="header">
       <h1 class="title">LET ME REST</h1>
-      <p class="subtitle">A game created by Team Restless</p>
+      <p class="subtitle">A game created by Team Judgement</p>
     </header>
     <nav class="navigation">
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="https://discord.gg/JZ6qp6efz5" target="_blank">Discord</a></li>
-        <li><a href="#SP">Game Sneeky Peekies</a></li>
       </ul>
     </nav>
     <br>
